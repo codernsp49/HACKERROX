@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoxTools</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: cyan;
+      font-family: monospace;
+      text-align: center;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+    }
+    header img {
+      height: 60px;
+    }
+    .nav a {
+      text-decoration: none;
+      color: lime;
+      font-size: 18px;
+      border: 1px solid lime;
+      padding: 6px 12px;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+    .nav a:hover {
+      background: lime;
+      color: black;
+    }
+    h1 {
+      font-size: 40px;
+      text-shadow: 0 0 15px cyan, 0 0 30px blue;
+      margin-top: 20px;
+    }
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+    .card {
+      background: rgba(0, 255, 0, 0.05);
+      border: 1px solid lime;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 10px lime;
+      transition: 0.4s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px cyan;
+    }
+    textarea, input {
+      width: 90%;
+      padding: 10px;
+      background: black;
+      color: cyan;
+      border: 1px solid lime;
+      border-radius: 8px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 15px;
+      background: lime;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: cyan;
+    }
+    footer {
+      margin-top: 30px;
+      padding: 15px;
+      border-top: 1px solid cyan;
+      color: lime;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="hackerrox-logo.png" alt="HACKERROX Logo">
+    <div class="nav">
+      <a href="index.html">Home</a>
+    </div>
+  </header>
+
+  <h1>RoxTools</h1>
+
+  <div class="tools">
+    <div class="card">
+      <h3>Base64 Encoder/Decoder</h3>
+      <textarea id="b64text" placeholder="Enter text..."></textarea><br>
+      <button onclick="encode()">Encode</button>
+      <button onclick="decode()">Decode</button>
+      <p id="b64result"></p>
+    </div>
+
+    <div class="card">
+      <h3>Reverse Text</h3>
+      <input type="text" id="revtext" placeholder="Enter text..."><br>
+      <button onclick="reverse()">Reverse</button>
+      <p id="revresult"></p>
+    </div>
+
+    <div class="card">
+      <h3>Word Counter</h3>
+      <textarea id="wordtext" placeholder="Enter text..."></textarea><br>
+      <button onclick="countWords()">Count</button>
+      <p id="wordresult"></p>
+    </div>
+
+    <div class="card">
+      <h3>Random Password Generator</h3>
+      <button onclick="generatePass()">Generate</button>
+      <p id="passresult"></p>
+    </div>
+  </div>
+
+  <footer>
+    Design by NSP
+  </footer>
+
+  <script>
+    function encode() {
+      const text = document.getElementById("b64text").value;
+      document.getElementById("b64result").innerText = btoa(text);
+    }
+    function decode() {
+      const text = document.getElementById("b64text").value;
+      document.getElementById("b64result").innerText = atob(text);
+    }
+    function reverse() {
+      const text = document.getElementById("revtext").value;
+      document.getElementById("revresult").innerText = text.split("").reverse().join("");
+    }
+    function countWords() {
+      const text = document.getElementById("wordtext").value.trim();
+      const words = text.split(/\s+/).filter(w => w.length > 0);
+      document.getElementById("wordresult").innerText = "Words: " + words.length;
+    }
+    function generatePass() {
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*";
+      let pass = "";
+      for(let i=0; i<12; i++) {
+        pass += chars.charAt(Math.floor(Math.random()*chars.length));
+      }
+      document.getElementById("passresult").innerText = pass;
+    }
+  </script>
+</body>
+</html>
