@@ -13,7 +13,6 @@
       font-family: 'Share Tech Mono', monospace;
       overflow: hidden;
       text-align: center;
-      position: relative; /* Added for button positioning */
     }
     canvas {
       display: block;
@@ -26,39 +25,11 @@
       color: #0f0;
       text-shadow: 0 0 10px #0f0;
     }
-    .mobile-controls {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 20px;
-    }
-    .mobile-btn {
-      width: 80px;
-      height: 80px;
-      background: #0f0;
-      color: #000;
-      font-size: 2em;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      user-select: none;
-      box-shadow: 0 0 10px #0f0;
-    }
   </style>
 </head>
 <body>
   <h1>🕹️ RoxGame: Virus Shooter</h1>
   <canvas id="gameCanvas" width="500" height="600"></canvas>
-
-  <div class="mobile-controls">
-    <div class="mobile-btn" id="leftBtn">◀️</div>
-    <div class="mobile-btn" id="fireBtn">🔥</div>
-    <div class="mobile-btn" id="rightBtn">▶️</div>
-  </div>
 
   <script>
     const canvas = document.getElementById("gameCanvas");
@@ -86,11 +57,12 @@
 
       // bullets
       ctx.fillStyle = "#0f0";
-      bullets.forEach(b => ctx.fillRect(b.x, b.y, 5, 10));
+      bullets.forEach(b => ctx.fillRect(b.x, b.y, b.w, b.h));
 
       // viruses
       ctx.fillStyle = "red";
-      viruses.forEach(v => ctx.fillRect(v.x, v.y, v.w, v.h));
+      ctx.font = "24px Share Tech Mono";
+      viruses.forEach(v => ctx.fillText("🦠", v.x, v.y));
 
       // score
       ctx.fillStyle = "#0f0";
@@ -103,7 +75,7 @@
       // bullets move
       bullets.forEach((b, i) => {
         b.y -= 5;
-        if (b.y < 0) bullets.splice(i, 1);
+        if (b.y + b.h < 0) bullets.splice(i, 1);
       });
 
       // viruses move
@@ -115,8 +87,8 @@
       // collision
       bullets.forEach((b, bi) => {
         viruses.forEach((v, vi) => {
-          if (b.x < v.x + v.w && b.x + 5 > v.x &&
-              b.y < v.y + v.h && b.y + 10 > v.y) {
+          if (b.x < v.x + v.w && b.x + b.w > v.x &&
+              b.y < v.y + v.h && b.y + b.h > v.y) {
             bullets.splice(bi, 1);
             viruses.splice(vi, 1);
             score++;
@@ -133,48 +105,11 @@
     }
     gameLoop();
 
-    // keyboard controls for desktop
+    // controls
     document.addEventListener("keydown", e => {
       if (e.key === "ArrowLeft" && player.x > 0) player.x -= player.speed;
       if (e.key === "ArrowRight" && player.x < canvas.width - player.w) player.x += player.speed;
-      if (e.key === " ") bullets.push({ x: player.x + player.w / 2, y: player.y });
-    });
-
-    // Mobile touch controls
-    const leftBtn = document.getElementById('leftBtn');
-    const rightBtn = document.getElementById('rightBtn');
-    const fireBtn = document.getElementById('fireBtn');
-    
-    // Hold-to-move logic
-    let leftPressed = false;
-    let rightPressed = false;
-
-    function handlePlayerMovement() {
-        if (leftPressed && player.x > 0) {
-            player.x -= player.speed;
-        }
-        if (rightPressed && player.x < canvas.width - player.w) {
-            player.x += player.speed;
-        }
-    }
-
-    // Add this to your update function to enable continuous movement
-    // update() {
-    //   ... your existing code ...
-    //   handlePlayerMovement(); // Add this line
-    // }
-
-    // Start moving when button is touched
-    leftBtn.addEventListener('touchstart', () => { leftPressed = true; });
-    rightBtn.addEventListener('touchstart', () => { rightPressed = true; });
-
-    // Stop moving when button is released
-    leftBtn.addEventListener('touchend', () => { leftPressed = false; });
-    rightBtn.addEventListener('touchend', () => { rightPressed = false; });
-
-    // Fire on a single tap
-    fireBtn.addEventListener('touchstart', () => {
-        bullets.push({ x: player.x + player.w / 2, y: player.y });
+      if (e.key === " ") bullets.push({ x: player.x + player.w / 2 - 2.5, y: player.y - 10, w: 5, h: 10 });
     });
 
     // spawn virus interval
