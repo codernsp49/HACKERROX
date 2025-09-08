@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoxGame | HACKERROX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: #0f0;
+      font-family: 'Share Tech Mono', monospace;
+      overflow: hidden;
+      text-align: center;
+    }
+    canvas {
+      display: block;
+      margin: auto;
+      background: #000;
+      border: 1px solid #0f0;
+    }
+    h1 {
+      margin: 10px;
+      color: #0f0;
+      text-shadow: 0 0 10px #0f0;
+    }
+  </style>
+</head>
+<body>
+  <h1>🕹️ RoxGame: Virus Shooter</h1>
+  <canvas id="gameCanvas" width="500" height="600"></canvas>
+
+  <script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let player = { x: 220, y: 550, w: 60, h: 20, speed: 7 };
+    let bullets = [];
+    let viruses = [];
+    let score = 0;
+
+    // spawn virus
+    function spawnVirus() {
+      let x = Math.random() * (canvas.width - 30);
+      viruses.push({ x, y: -30, w: 30, h: 30, speed: 2 });
+    }
+
+    // draw everything
+    function draw() {
+      ctx.fillStyle = "black";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // player
+      ctx.fillStyle = "#0f0";
+      ctx.fillRect(player.x, player.y, player.w, player.h);
+
+      // bullets
+      ctx.fillStyle = "#0f0";
+      bullets.forEach(b => ctx.fillRect(b.x, b.y, 5, 10));
+
+      // viruses
+      ctx.fillStyle = "red";
+      viruses.forEach(v => ctx.fillText("🦠", v.x, v.y));
+
+      // score
+      ctx.fillStyle = "#0f0";
+      ctx.font = "16px Share Tech Mono";
+      ctx.fillText("Score: " + score, 10, 20);
+    }
+
+    // update
+    function update() {
+      // bullets move
+      bullets.forEach((b, i) => {
+        b.y -= 5;
+        if (b.y < 0) bullets.splice(i, 1);
+      });
+
+      // viruses move
+      viruses.forEach((v, i) => {
+        v.y += v.speed;
+        if (v.y > canvas.height) viruses.splice(i, 1);
+      });
+
+      // collision
+      bullets.forEach((b, bi) => {
+        viruses.forEach((v, vi) => {
+          if (b.x < v.x + v.w && b.x + 5 > v.x &&
+              b.y < v.y + v.h && b.y + 10 > v.y) {
+            bullets.splice(bi, 1);
+            viruses.splice(vi, 1);
+            score++;
+          }
+        });
+      });
+    }
+
+    // game loop
+    function gameLoop() {
+      draw();
+      update();
+      requestAnimationFrame(gameLoop);
+    }
+    gameLoop();
+
+    // controls
+    document.addEventListener("keydown", e => {
+      if (e.key === "ArrowLeft" && player.x > 0) player.x -= player.speed;
+      if (e.key === "ArrowRight" && player.x < canvas.width - player.w) player.x += player.speed;
+      if (e.key === " ") bullets.push({ x: player.x + player.w / 2, y: player.y });
+    });
+
+    // spawn virus interval
+    setInterval(spawnVirus, 1000);
+  </script>
+</body>
+</html>
