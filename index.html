@@ -4,76 +4,107 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HACKERROX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background: black;
-      color: cyan;
-      font-family: monospace;
-      text-align: center;
+      font-family: 'Share Tech Mono', monospace;
+      background: linear-gradient(135deg, #000000, #0a0a23, #001f3f);
+      color: #fff;
+      overflow-x: hidden;
     }
+
+    /* Smooth fade-in */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1.5s ease forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
+      text-align: center;
+      padding: 80px 20px;
     }
-    header img {
-      height: 60px;
+
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 4rem;
+      color: #00ffe5;
+      text-shadow: 0 0 20px #00ffe5, 0 0 40px #00b8a9;
+      letter-spacing: 5px;
+      animation: glow 2s ease-in-out infinite alternate;
     }
-    .nav a {
-      text-decoration: none;
-      color: lime;
-      font-size: 18px;
-      border: 1px solid lime;
-      padding: 6px 12px;
-      border-radius: 8px;
-      transition: 0.3s;
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 20px #00ffe5, 0 0 40px #00b8a9;
+      }
+      to {
+        text-shadow: 0 0 40px #00ffe5, 0 0 80px #00b8a9;
+      }
     }
-    .nav a:hover {
-      background: lime;
-      color: black;
-    }
-    h1 {
-      font-size: 50px;
-      text-shadow: 0 0 15px cyan, 0 0 30px blue;
-      margin-top: 50px;
-    }
-    p {
+
+    .tagline {
+      font-size: 1.2rem;
+      color: #ccc;
       max-width: 700px;
       margin: 20px auto;
-      font-size: 18px;
       line-height: 1.6;
-      color: #bbb;
     }
+
+    .highlight {
+      color: #00ff88;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 80px 20px;
+      background: rgba(0, 0, 0, 0.6);
+      margin: 40px auto;
+      border-radius: 15px;
+      width: 80%;
+      box-shadow: 0 0 25px rgba(0, 255, 200, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 40px rgba(0, 255, 200, 0.4);
+    }
+
     footer {
-      margin-top: 50px;
-      padding: 15px;
-      border-top: 1px solid cyan;
-      color: lime;
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      color: #00ff88;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="hackerrox-logo.png" alt="HACKERROX Logo">
-    <div class="nav">
-      <a href="roxtools.html">RoxTools</a>
-    </div>
+  <header class="fade-in">
+    <h1>HACKERROX</h1>
+    <p class="tagline">Where <span class="highlight">code</span> becomes a weapon, <span class="highlight">creativity</span> fuels innovation, and limits don’t exist.</p>
   </header>
 
-  <h1>HACKERROX</h1>
-  <p>
-    Welcome to <b>HACKERROX</b> — a hub where code becomes a weapon and creativity fuels innovation.  
-    We are not bound by limits; we are explorers of the digital world, turning ideas into tools,  
-    chaos into order, and scripts into power.  
-    <br><br>
-    <i>"In shadows we code, in silence we conquer, and in every glitch we find our path."</i>
-  </p>
+  <section class="fade-in">
+    <h2>⚡ About</h2>
+    <p>We are explorers of the digital world, turning <span class="highlight">ideas</span> into tools, chaos into order, and scripts into <span class="highlight">power</span>.</p>
+  </section>
+
+  <section class="fade-in">
+    <h2>🚀 Philosophy</h2>
+    <p><i>"In shadows we code, in silence we conquer, and in every glitch we find our path."</i></p>
+  </section>
 
   <footer>
-    Design by NSP
+    Design by NSP ✨
   </footer>
 </body>
 </html>
+
