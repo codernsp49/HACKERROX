@@ -3,160 +3,125 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RoxTools</title>
+  <title>RoxTools | HACKERROX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background: black;
-      color: cyan;
-      font-family: monospace;
-      text-align: center;
+      font-family: 'Share Tech Mono', monospace;
+      background: #000;
+      color: #e0e0e0;
     }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+
+    nav {
       padding: 15px 30px;
+      background: rgba(0,0,0,0.85);
+      border-bottom: 1px solid #00fff7;
     }
-    header img {
-      height: 60px;
-    }
-    .nav a {
+    nav a {
+      color: #00fff7;
       text-decoration: none;
-      color: lime;
-      font-size: 18px;
-      border: 1px solid lime;
-      padding: 6px 12px;
-      border-radius: 8px;
-      transition: 0.3s;
+      font-size: 1.2rem;
     }
-    .nav a:hover {
-      background: lime;
-      color: black;
+    nav a:hover {
+      color: #ff00ff;
     }
-    h1 {
-      font-size: 40px;
-      text-shadow: 0 0 15px cyan, 0 0 30px blue;
-      margin-top: 20px;
+
+    header {
+      text-align: center;
+      padding: 60px 20px;
     }
-    .tools {
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      color: #00fff7;
+      text-shadow: 0 0 20px #00fff7, 0 0 40px #ff00ff;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #aaa;
+    }
+
+    .tools-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      padding: 30px;
+      padding: 40px;
     }
-    .card {
-      background: rgba(0, 255, 0, 0.05);
-      border: 1px solid lime;
+
+    .tool-card {
+      background: rgba(15,15,15,0.9);
+      border: 1px solid #00fff7;
       border-radius: 12px;
       padding: 20px;
-      box-shadow: 0 0 10px lime;
-      transition: 0.4s;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,255,247,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px cyan;
+    .tool-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 30px rgba(0,255,247,0.4);
     }
-    textarea, input {
-      width: 90%;
-      padding: 10px;
-      background: black;
-      color: cyan;
-      border: 1px solid lime;
-      border-radius: 8px;
+    .tool-card h3 {
+      color: #ff00ff;
+      margin-bottom: 10px;
     }
-    button {
-      margin-top: 10px;
-      padding: 8px 15px;
-      background: lime;
-      color: black;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
+    .tool-card p {
+      color: #ccc;
+      font-size: 0.95rem;
     }
-    button:hover {
-      background: cyan;
-    }
+
     footer {
-      margin-top: 30px;
-      padding: 15px;
-      border-top: 1px solid cyan;
-      color: lime;
+      text-align: center;
+      padding: 20px;
+      color: #ff00ff;
+      border-top: 1px solid #00fff7;
+      background: #050505;
     }
   </style>
 </head>
 <body>
+
+  <nav>
+    <a href="index.html">← Back to HACKERROX</a>
+  </nav>
+
   <header>
-    <img src="hackerrox-logo.png" alt="HACKERROX Logo">
-    <div class="nav">
-      <a href="index.html">Home</a>
-    </div>
+    <h1>⚡ RoxTools</h1>
+    <p>A curated collection of cyber tools — only for the bold.</p>
   </header>
 
-  <h1>RoxTools</h1>
-
-  <div class="tools">
-    <div class="card">
-      <h3>Base64 Encoder/Decoder</h3>
-      <textarea id="b64text" placeholder="Enter text..."></textarea><br>
-      <button onclick="encode()">Encode</button>
-      <button onclick="decode()">Decode</button>
-      <p id="b64result"></p>
+  <div class="tools-container">
+    <div class="tool-card">
+      <h3>🛡️ ReconX</h3>
+      <p>Information gathering toolkit with DNS, Whois, Subdomain finder, and OSINT modules.</p>
     </div>
-
-    <div class="card">
-      <h3>Reverse Text</h3>
-      <input type="text" id="revtext" placeholder="Enter text..."><br>
-      <button onclick="reverse()">Reverse</button>
-      <p id="revresult"></p>
+    <div class="tool-card">
+      <h3>💻 CodeInjector</h3>
+      <p>Inject custom payloads into running apps and scripts with ease.</p>
     </div>
-
-    <div class="card">
-      <h3>Word Counter</h3>
-      <textarea id="wordtext" placeholder="Enter text..."></textarea><br>
-      <button onclick="countWords()">Count</button>
-      <p id="wordresult"></p>
+    <div class="tool-card">
+      <h3>🔓 BruteForce Pro</h3>
+      <p>Password testing engine for SSH, FTP, and web panels with smart wordlists.</p>
     </div>
-
-    <div class="card">
-      <h3>Random Password Generator</h3>
-      <button onclick="generatePass()">Generate</button>
-      <p id="passresult"></p>
+    <div class="tool-card">
+      <h3>🌐 ProxyRox</h3>
+      <p>Anonymous proxy rotator for secure and stealth browsing.</p>
+    </div>
+    <div class="tool-card">
+      <h3>📡 PacketSpy</h3>
+      <p>Real-time packet sniffer and analyzer for network reconnaissance.</p>
+    </div>
+    <div class="tool-card">
+      <h3>🧩 ScriptHub</h3>
+      <p>A library of custom scripts and exploits crafted for automation.</p>
     </div>
   </div>
 
   <footer>
-    Design by NSP
+    Powered by NSP | RoxTools Division
   </footer>
 
-  <script>
-    function encode() {
-      const text = document.getElementById("b64text").value;
-      document.getElementById("b64result").innerText = btoa(text);
-    }
-    function decode() {
-      const text = document.getElementById("b64text").value;
-      document.getElementById("b64result").innerText = atob(text);
-    }
-    function reverse() {
-      const text = document.getElementById("revtext").value;
-      document.getElementById("revresult").innerText = text.split("").reverse().join("");
-    }
-    function countWords() {
-      const text = document.getElementById("wordtext").value.trim();
-      const words = text.split(/\s+/).filter(w => w.length > 0);
-      document.getElementById("wordresult").innerText = "Words: " + words.length;
-    }
-    function generatePass() {
-      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*";
-      let pass = "";
-      for(let i=0; i<12; i++) {
-        pass += chars.charAt(Math.floor(Math.random()*chars.length));
-      }
-      document.getElementById("passresult").innerText = pass;
-    }
-  </script>
 </body>
 </html>
+
