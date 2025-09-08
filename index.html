@@ -4,107 +4,154 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HACKERROX</title>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Share Tech Mono', monospace;
-      background: linear-gradient(135deg, #000000, #0a0a23, #001f3f);
-      color: #fff;
-      overflow-x: hidden;
-    }
-
-    /* Smooth fade-in */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1.5s ease forwards;
-    }
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    header {
-      text-align: center;
-      padding: 80px 20px;
-    }
-
-    header h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 4rem;
-      color: #00ffe5;
-      text-shadow: 0 0 20px #00ffe5, 0 0 40px #00b8a9;
-      letter-spacing: 5px;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 20px #00ffe5, 0 0 40px #00b8a9;
-      }
-      to {
-        text-shadow: 0 0 40px #00ffe5, 0 0 80px #00b8a9;
-      }
-    }
-
-    .tagline {
-      font-size: 1.2rem;
-      color: #ccc;
-      max-width: 700px;
-      margin: 20px auto;
+      background: #000;
+      color: #e0e0e0;
       line-height: 1.6;
     }
 
-    .highlight {
-      color: #00ff88;
-      font-weight: bold;
+    /* NAVBAR */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(0, 0, 0, 0.85);
+      border-bottom: 1px solid #00fff7;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      color: #00fff7;
+      text-shadow: 0 0 10px #00fff7;
+    }
+    nav a {
+      color: #ff00ff;
+      margin-left: 20px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #00fff7;
     }
 
+    /* HERO */
+    header {
+      text-align: center;
+      padding: 100px 20px;
+    }
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 4rem;
+      background: linear-gradient(90deg, #00fff7, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px #00fff7, 0 0 60px #ff00ff;
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 20px #00fff7, 0 0 40px #ff00ff; }
+      to { text-shadow: 0 0 40px #00fff7, 0 0 80px #ff00ff; }
+    }
+    header p {
+      font-size: 1.3rem;
+      color: #aaa;
+      margin-top: 15px;
+    }
+
+    /* SECTIONS */
     section {
-      padding: 80px 20px;
-      background: rgba(0, 0, 0, 0.6);
-      margin: 40px auto;
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: auto;
+      border-left: 3px solid #00fff7;
+      border-right: 3px solid #ff00ff;
+      margin-bottom: 40px;
+      background: rgba(10, 10, 10, 0.85);
       border-radius: 15px;
-      width: 80%;
-      box-shadow: 0 0 25px rgba(0, 255, 200, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 20px rgba(0, 255, 247, 0.2);
+      animation: fadeIn 1.5s ease forwards;
+      opacity: 0;
+    }
+    section h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: #00fff7;
+      text-shadow: 0 0 10px #00fff7;
+      margin-bottom: 15px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    section:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 40px rgba(0, 255, 200, 0.4);
-    }
-
+    /* FOOTER */
     footer {
       text-align: center;
-      padding: 30px;
+      padding: 25px;
       font-size: 0.9rem;
-      color: #00ff88;
+      color: #ff00ff;
+      border-top: 1px solid #00fff7;
+      background: #050505;
     }
   </style>
 </head>
 <body>
-  <header class="fade-in">
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">HACKERROX</div>
+    <div>
+      <a href="#about">About</a>
+      <a href="#structure">Structure</a>
+      <a href="#philosophy">Philosophy</a>
+      <a href="roxtools.html">RoxTools ⚡</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header>
     <h1>HACKERROX</h1>
-    <p class="tagline">Where <span class="highlight">code</span> becomes a weapon, <span class="highlight">creativity</span> fuels innovation, and limits don’t exist.</p>
+    <p>“We don’t follow the system. We rewrite it.”</p>
   </header>
 
-  <section class="fade-in">
-    <h2>⚡ About</h2>
-    <p>We are explorers of the digital world, turning <span class="highlight">ideas</span> into tools, chaos into order, and scripts into <span class="highlight">power</span>.</p>
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>⚡ Who We Are</h2>
+    <p>HACKERROX is not just a name, it’s a mindset. We don’t chase fame, we chase <span style="color:#00fff7;">freedom</span>. We are explorers of the digital matrix — breaking walls, rewriting codes, and bending reality.</p>
   </section>
 
-  <section class="fade-in">
-    <h2>🚀 Philosophy</h2>
-    <p><i>"In shadows we code, in silence we conquer, and in every glitch we find our path."</i></p>
+  <!-- STRUCTURE -->
+  <section id="structure">
+    <h2>🕶 Structure</h2>
+    <p>
+      ⛧ ROX-0 — Founder <br>
+      ⛧ ROX-1 — Core Dev <br>
+      ⛧ ROX-X — Elite Ops <br>
+      ⛧ ROX-9 — Agents <br>
+      ⛧ ROX? — New Recruits  
+    </p>
   </section>
 
+  <!-- PHILOSOPHY -->
+  <section id="philosophy">
+    <h2>💀 Philosophy</h2>
+    <p><i>“We don’t crack systems for fun. We bend them to remind the world that nothing is unbreakable.”</i></p>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    Design by NSP ✨
+    Designed by NSP | © HACKERROX Official
   </footer>
+
 </body>
 </html>
+
 
